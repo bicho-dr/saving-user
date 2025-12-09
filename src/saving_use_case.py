@@ -1,6 +1,11 @@
 from src.User import User
+from src.saving_Repository_interFace import saving_Repository_interface
 
 
 class saving_user_use_case :
+
+    def __init__(self, repository: saving_Repository_interface):
+        self.repository = repository
+
     def execute(self, data: User):
-        pass
+        self.repository.save(data)
