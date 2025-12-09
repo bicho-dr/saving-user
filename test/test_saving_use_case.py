@@ -1,3 +1,6 @@
+from src.saving_use_case import saving_user_use_case
+
+
 def test_execute_should_call_internal_save(mocker):
     # Arrange
     use_case = saving_user_use_case()
@@ -9,6 +12,3 @@ def test_execute_should_call_internal_save(mocker):
     # Assert
     save_spy.assert_called_once()
 
-class saving_user_use_case :
-    def execute(self):
-        pass
