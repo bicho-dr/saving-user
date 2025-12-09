@@ -1,6 +1,7 @@
 from pytest_mock import mocker
 
 from src.User import User
+from src.saving_Repository import saving_Repository
 from src.saving_use_case import saving_user_use_case
 
 
@@ -42,3 +43,19 @@ def test_execute_should_call_repository_save_once_with_user(mocker):
 
     # Assert
     mock_repository.save.assert_called_once_with(user)
+
+
+def test_execute_should_call_repository_save_spy(mocker):
+    # Arrange
+    repository = saving_Repository()
+    save_spy = mocker.spy(repository, "save")
+    use_case = saving_user_use_case(repository)
+
+    user = User(first_name="Ali", last_name="Ahmed")
+
+    # Act
+    use_case.execute(user)
+
+    # Assert
+    save_spy.assert_called_once_with(user)
+
