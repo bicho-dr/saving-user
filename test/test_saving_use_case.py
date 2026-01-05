@@ -2,8 +2,8 @@ import pytest
 from pytest_mock import mocker
 
 from src.User import User
-from src.saving_Repository import saving_Repository
-from src.saving_use_case import saving_user_use_case
+from src.user_saving_Repository import saving_Repository
+from src.saving_user_use_case import saving_user_use_case
 
 @pytest.mark.parametrize(
         "user_test",
