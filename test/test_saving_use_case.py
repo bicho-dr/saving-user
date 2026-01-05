@@ -2,6 +2,7 @@ import pytest
 from pytest_mock import mocker
 
 from src.User import User
+from src.user_Repository_DTO import user_Repository_DTO
 from src.user_saving_Repository import user_saving_Repository
 from src.saving_user_use_case import saving_user_use_case
 
@@ -84,5 +85,15 @@ class TestSavingUseCase :
 
         result = repo.save(user_test)
 
+        assert result.error is False
+        assert result.msg == "success"
+
+    def test_execute_use_case_should_be_return_user_Repository_DTO(slfe, mocker, user_test):
+        Repository = user_saving_Repository()
+        use_case = saving_user_use_case(Repository)
+
+        result = use_case.execute(user_test)
+
+        assert isinstance(result, user_Repository_DTO)
         assert result.error is False
         assert result.msg == "success"
