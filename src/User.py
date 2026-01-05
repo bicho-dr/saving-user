@@ -4,5 +4,4 @@ from src.User_dto import User_dto
 
 @dataclass
 class User(User_dto):
-    first_name: str
-    last_name: str
+    pass
