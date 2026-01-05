@@ -2,7 +2,7 @@ import pytest
 from pytest_mock import mocker
 
 from src.User import User
-from src.user_saving_Repository import saving_Repository
+from src.user_saving_Repository import user_saving_Repository
 from src.saving_user_use_case import saving_user_use_case
 
 @pytest.mark.parametrize(
@@ -68,7 +68,7 @@ class TestSavingUseCase :
 
     def test_execute_should_call_repository_save_spy(slfe ,mocker , user_test):
         # Arrange
-        repository = saving_Repository()
+        repository = user_saving_Repository()
         save_spy = mocker.spy(repository, "save")
         use_case = saving_user_use_case(repository)
 
@@ -79,3 +79,10 @@ class TestSavingUseCase :
         # Assert
         save_spy.assert_called_once_with(user_test)
 
+    def test_user_saving_repo_returns_repo_dto(slfe, mocker, user_test):
+        repo = user_saving_Repository()
+
+        result = repo.save(user_test)
+
+        assert result.error is False
+        assert result.msg == "success"
